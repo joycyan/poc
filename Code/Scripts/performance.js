@@ -1,0 +1,1 @@
+document.cookie = "Performance_Cookie =PN";

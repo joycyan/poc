@@ -1,0 +1,1 @@
+document.cookie = "Functional_Cookie=FN";
