@@ -13,7 +13,7 @@ document.getElementById("user").onclick = function pageLoadUser() {
 
 document.getElementById('price').innerHTML =  document.cookie.match('(^|;)\\s*' + "Price" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_entered'
 
-document.getElementById('username').innerHTML =  document.cookie.match('(^|;)\\s*' + "username" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_entered'
+document.getElementById('username').innerHTML = document.cookie.match('(^|;)\\s*' + "username" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_entered'
 
 
 
