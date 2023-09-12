@@ -11,9 +11,12 @@ document.getElementById("user").onclick = function pageLoadUser() {
   location.href = "../html/user.html";
 };
 
-document.getElementById('price').innerHTML =  document.cookie.match('(^|;)\\s*' + "Price" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_entered'
+document.getElementById('price').innerHTML =  document.cookie.match('(^|;)\\s*' + "Price" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_storeded';
 
-document.getElementById('username').innerHTML = document.cookie.match('(^|;)\\s*' + "username" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_entered'
+document.getElementById('username').innerHTML = document.cookie.match('(^|;)\\s*' + "username" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_stored';
+
+document.getElementById('pageview').innerHTML = document.cookie.match('(^|;)\\s*' + "pageviewCount" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_stored';
+
 
 
 
