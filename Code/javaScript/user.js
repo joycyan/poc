@@ -1,8 +1,8 @@
-var user = prompt("Enter your username:");
+var user = prompt("Enter your email address:");
 
 document.getElementById('username').innerHTML = user? user:"no_value_entered";
 
-document.getElementById('price').innerHTML =  document.cookie.match('(^|;)\\s*' + "Price" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_stored'
+document.getElementById('price').innerHTML =  document.cookie.match('(^|;)\\s*' + "Unit" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_stored'
 
 
 document.getElementById("back").onclick = function backToIndex() {

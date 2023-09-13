@@ -24,9 +24,9 @@ function OptanonWrapper() {
                 // var otDomainGrps = JSON.parse(JSON.stringify(Optanon.GetDomainData().Groups));
                 var otDeletedGrpIds = otGetInactiveId(iniOptGrpId, OnetrustActiveGroups);
                 if (otDeletedGrpIds.length != 0) {
-                        if (otDeletedGrpIds.includes("C0004") && document.cookie.match('(^|;)\\s*' + "username" + '\\s*=\\s*([^;]+)')) {
-                            document.cookie = "username=Anonymous";
-                            localStorage.removeItem("username");
+                        if (otDeletedGrpIds.includes("C0004") && document.cookie.match('(^|;)\\s*' + "Email" + '\\s*=\\s*([^;]+)')) {
+                            document.cookie = "Email=Anonymous";
+                            localStorage.removeItem("Email");
                                window.location.reload();
                         }
 
@@ -106,23 +106,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <![endif]-->
 
 
-        <h2>This is a price bidding website! Please enter your bid for the item below. </h2>
+        <h2>Welcome to the shopping page! </h2>
 
-        <img src="https://previews.123rf.com/images/takoyaki999/takoyaki9991308/takoyaki999130800113/21719442-treasure-box.jpg" style="width:200px;height:200px;">
+        <div class="plp__hide__1oZHX plp__show__o-ksV"><div class="plp__productInfo__13I0m"><div class="plp__ribbonContainer__3vMUx plp__ribbonContainer__3OLH3"><div data-testid="ribbon" class="plp__ribbonWrapper__GHKpz" aria-label="Thoughtful Choices badge"><p class="plp__ribbonText__1bfQq plp__smallRibbonText__23zQ0 plp__ribbonText__1bfQq" style="background-color: rgb(0, 127, 170);"> <svg data-testid="leaf-icon" width="14" height="14" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M14.8504 15.4865L14.875 15.4986L14.8166 15.3623L13.9871 12.1651C15.3297 10.0487 15.1239 7.2753 13.4095 5.37086C11.5692 3.32716 4.27253 1.82239 2.125 1.41667C2.27861 3.56635 2.93301 10.8874 4.77331 12.9311C6.45693 14.8022 9.16362 15.3442 11.434 14.3511L14.875 15.5833L14.8504 15.4865Z" fill="#92C83E"></path><path d="M11.5907 10.63C11.6829 10.2454 12.07 8.40763 11.6399 6.38511L11.6245 6.34273C11.6091 6.3185 11.5323 6.19437 11.3879 6.18831C11.3173 6.18226 11.2097 6.20951 11.1084 6.35181L11.0746 6.39723L11.0807 6.45475C11.0838 6.47595 11.2988 8.61957 10.5553 9.73074L9.25884 8.37735C9.32951 8.01705 9.57529 6.51833 9.12981 4.82584C9.10523 4.75923 9.01306 4.53215 8.83179 4.48674C8.74577 4.46252 8.65667 4.48674 8.58294 4.55032L8.51842 4.60482L8.53071 4.68657C8.53378 4.70473 8.78571 6.39723 8.27571 7.51445L4.51523 3.78734C4.45993 3.70862 4.3739 3.63898 4.26023 3.64806C4.15884 3.66017 4.08204 3.73587 4.03288 3.87514L4.01752 3.92661L4.03595 3.97808C4.10969 4.17186 4.26637 4.3293 4.27559 4.33838L8.20505 8.94959L11.007 11.941L13.1207 13.7001L11.5907 10.63Z" fill="white"></path></g><defs><clipPath id="clip0"><rect width="12.75" height="14.1667" fill="white" transform="translate(2.125 1.41667)"></rect></clipPath></defs></svg> &nbsp;Thoughtful Choices</p><span class="plp__ribbonTail__3U4Rd plp__smallRibbonTail__10New" style="border-color: rgb(0, 127, 170) transparent rgb(0, 127, 170) rgb(0, 127, 170);"></span></div></div><p class="plp__brandName__8MSID"><a href="/Shop/President%27s-Choice/c/PC">President's Choice</a></p><h1 class="plp__pageHeading__zUcEq plp__productName__2Ci77 plp__productName__1evR8" id="">PC Baby Good Night Bath 444ml</h1></div><section><div id="pr-reviewsnippet" class="plp__rating__2Y18G"><div class="p-w-r"><div></div></div></div></section></div>
+
+        <img src="https://assets.beauty.shoppersdrugmart.ca/bb-prod-product-image/60383157623/enfr/01/front/400/white.jpg" alt="PC Baby Good Night Bath 444ml" style="width:200px;height:200px;" class="plp__image__WzRYO">
+
+        <div>
+            <h3 data-testid="price-container" class="plp__price__325EX plp__customPrice__1OSfi"><span aria-label="$8.99">$8.99</span></h3>
+            
+            <p class="plp__pcoPointsTxt__3IBzl plp__pointsTxt__75EWE" style="color: #cb333b;">120<span style="color: #cb333b;" class="plp__pcOptimumNameTxt__nLQU_ plp__pcoPointsTxt__3IBzl plp__optimumNameTxt__36vv6"> PC Optimum</span> points</p>
+            <div class="plp__container__wxmKh" data-testid="variant-selection"><p class="plp__variantName__tiEnh">Size:&nbsp;444 mL</p></div>
+        </div>
 
         <script src="../javaScript/main.js" async defer></script>
         <div>
-        <button id="demo" onclick="pageLoad()">Click me to add price</button>
+        <button id="demo" onclick="pageLoad()">Click me to add unit</button>
 
-        <button id="user" onclick="pageLoadUser()">Click me to add a username</button>
+        <button id="user" onclick="pageLoadUser()">Click me to add your E-mail address</button>
     </div>
         <div>
-            <p>Strictly Necessary Cookie - Price value stored in cookie: <var id='price'></var></p>
+            <p>Strictly Necessary Cookie - Unit: <var id='price'></var></p>
           </div>
 
 
           <div>
-            <p>Targeting Cookie - User value stored in cookie: <var id='username'></var></p>
+            <p>Targeting Cookie - Email: <var id='username'></var></p>
           </div>
 
           <div>
@@ -130,7 +139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <div>
-            <p>Functional Cookie - WhatsApp Icon showing on the right corner of the page</p>
+            <p>Functional Cookie - WhatsApp Icon showing on the right corner of the page, enables chat-bot functionality</p>
           </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
