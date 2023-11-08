@@ -5,11 +5,40 @@
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
-        <!-- OneTrust Cookies Consent Notice start for enbridgegas.com -->
-<!-- OptanonConsentNoticeStart -->
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="055b967e-637a-4eb2-819c-4b3b7d8cfff4-test" ></script>
-<script type="text/javascript">
+        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="81b57dff-6a1b-4cc2-8fcc-84d9a982f1c9-test" ></script>
+        
+        <script type="text/javascript">
 function OptanonWrapper() {
+
+    if (document.getElementById('onetrust-banner-sdk')) {
+        // Get the buttons and container
+        var acceptBtn = document.getElementById("onetrust-accept-btn-handler");
+        var declineBtn = document.getElementById("onetrust-reject-all-handler");
+        var cookieSettingsBtn = document.getElementById("onetrust-pc-btn-handler");
+        var btnContainer = document.getElementById("onetrust-button-group");
+        // Set the order you want below...
+        btnContainer.append(acceptBtn, cookieSettingsBtn)
+        //remove accept all cookie button 
+        // const element = document.getElementById("accept-recommended-btn-handler");
+        // element.remove();
+    }
+
+    if (document.getElementById('onetrust-pc-sdk')) {
+
+        var btnContainer = document.getElementsByClassName("ot-btn-container")[0]
+        var acceptButton = document.getElementById("accept-recommended-btn-handler");
+        var confirmButton = document.getElementsByClassName("save-preference-btn-handler")[0]
+        btnContainer.append(acceptButton,confirmButton)
+        // if ((document.getElementsByClassName("ot-switch-nob")[0].ariaChecked) && (document.getElementsByClassName("ot-switch-nob")[1].ariaChecked)&& (document.getElementsByClassName("ot-switch-nob")[2].ariaChecked)){
+        //     document.getElementById("accept-recommended-btn-handler").style.display = "inline-block";
+        // }
+
+    }
+    // if (document.getElementById('onetrust-pc-sdk')) {
+    //     // Get the buttons and container
+    //     document.getElementById("accept-recommended-btn-handler").style.display = "none";
+
+    // }
 
             if (typeof OptanonWrapperCount == "undefined") {
                 otGetInitialGrps();
@@ -74,7 +103,6 @@ function OptanonWrapper() {
     
  }
 </script>
-<!-- OneTrust Cookies Consent Notice end for enbridgegas.com -->
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -141,6 +169,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <p>Functional Cookie - WhatsApp Icon showing on the right corner of the page, enables chat-bot functionality</p>
           </div>
+
+          <!-- OptanonCookieSettingsButtonStart --> <button id="ot-sdk-btn" class="ot-sdk-show-settings">CookieSettings</button> <!-- OptanonCookieSettingsButtonEnd -->
+
+          <a onclick="changeLang('fr')" href="#" title="French" data-lang="French">
+            <div class="flag pt">Francais</div>
+         </a>
+
+
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     </body>

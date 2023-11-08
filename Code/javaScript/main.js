@@ -20,5 +20,13 @@ document.getElementById('username').innerHTML = decodeURI(str);
 document.getElementById('pageview').innerHTML = document.cookie.match('(^|;)\\s*' + "pageviewCount" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_stored';
 
 
+  console.log("logging consent changes: ", window.OnetrustActiveGroups);
+
+  const changeLang = (languageCode) => {
+    document.documentElement.setAttribute("lang", languageCode);
+  };
+
+
+
 
 
