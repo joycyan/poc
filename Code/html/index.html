@@ -6,11 +6,26 @@
 <html>
     <head>
         <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="81b57dff-6a1b-4cc2-8fcc-84d9a982f1c9-test" ></script>
-        
         <script type="text/javascript">
 function OptanonWrapper() {
 
-    if (document.getElementById('onetrust-banner-sdk')) {
+//     document.getElementById("onetrust-policy-text")
+//                 .insertAdjacentHTML("afterbegin",
+// `<div><a href="javascript:OneTrust.changeLanguage('en')"; class="en-selector">EN</a><span> | </span><a href="javascript:OneTrust.changeLanguage('fr')"; class="fr-selector">FR</a></div>`)   
+// console.log("i have been called");
+
+// document.getElementById("ot-pc-desc")
+//                 .insertAdjacentHTML("afterbegin",
+//                 `<div><a href="javascript:OneTrust.changeLanguage('en')"; class="en-selector">EN</a><span> | </span><a href="javascript:OneTrust.changeLanguage('fr')"; class="fr-selector">FR</a></div>`)   
+
+
+    var langToggle = `
+    <div><a href="#" onclick="OneTrust.changeLanguage('en'); setTimeout(function() { const element = document.getElementById('accept-recommended-btn-handler');element.remove();}, 2500);"class="en-selector">EN</a><span> | </span><a href="#" onclick="OneTrust.changeLanguage('fr');const element = document.getElementById('accept-recommended-btn-handler'); setTimeout(function() { const element = document.getElementById('accept-recommended-btn-handler');element.remove();}, 2500);" class="fr=selector">FR</a></div>
+    `;
+ 
+
+
+    if (document.getElementById('onetrust-banner-sdk') || document.getElementById('onetrust-pc-sdk')) {
         // Get the buttons and container
         var acceptBtn = document.getElementById("onetrust-accept-btn-handler");
         var declineBtn = document.getElementById("onetrust-reject-all-handler");
@@ -18,10 +33,20 @@ function OptanonWrapper() {
         var btnContainer = document.getElementById("onetrust-button-group");
         // Set the order you want below...
         btnContainer.append(acceptBtn, cookieSettingsBtn)
-        //remove accept all cookie button 
+        document
+        .getElementById('onetrust-policy-text')
+        .insertAdjacentHTML('afterbegin', langToggle);
+ 
+    document
+        .getElementById('ot-pc-desc')
+        .insertAdjacentHTML('afterbegin', langToggle);
+        
+ //remove accept all cookie button 
         // const element = document.getElementById("accept-recommended-btn-handler");
         // element.remove();
     }
+
+
 
     if (document.getElementById('onetrust-pc-sdk')) {
 
@@ -29,9 +54,10 @@ function OptanonWrapper() {
         var acceptButton = document.getElementById("accept-recommended-btn-handler");
         var confirmButton = document.getElementsByClassName("save-preference-btn-handler")[0]
         btnContainer.append(acceptButton,confirmButton)
-        // if ((document.getElementsByClassName("ot-switch-nob")[0].ariaChecked) && (document.getElementsByClassName("ot-switch-nob")[1].ariaChecked)&& (document.getElementsByClassName("ot-switch-nob")[2].ariaChecked)){
-        //     document.getElementById("accept-recommended-btn-handler").style.display = "inline-block";
-        // }
+
+        if ((document.getElementsByClassName("ot-switch-nob")[0].ariaChecked) && (document.getElementsByClassName("ot-switch-nob")[1].ariaChecked)&& (document.getElementsByClassName("ot-switch-nob")[2].ariaChecked)){
+            document.getElementById("accept-recommended-btn-handler").style.display = "inline-block";
+        }
 
     }
     // if (document.getElementById('onetrust-pc-sdk')) {
