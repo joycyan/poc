@@ -3,11 +3,36 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
-<html>
+<html lang="fr">
     <head>
-        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="81b57dff-6a1b-4cc2-8fcc-84d9a982f1c9-test" ></script>
+
         <script type="text/javascript">
+            // uncomment for customGeolocation        
+            var OneTrust = {        
+                geolocationResponse: {        
+                    stateCode: 'QC',        
+                    countryCode: 'CA',        
+                    regionCode: '', // Optional parameter        
+                }        
+            };    
+          </script>
+
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="2a68558e-fc72-461f-b86a-27135817dc5c-test" ></script>
+<script type="text/javascript">
 function OptanonWrapper() {
+
+    console.log("called");
+
+    // if there is #cookiesetting in the url:
+    //remove it and go to previous page 
+
+    function test(test_text){
+        OneTrust.changeLanguage('en');
+        console.log(test_text);
+
+
+    }
 
 //     document.getElementById("onetrust-policy-text")
 //                 .insertAdjacentHTML("afterbegin",
@@ -25,21 +50,21 @@ function OptanonWrapper() {
  
 
 
-    if (document.getElementById('onetrust-banner-sdk') || document.getElementById('onetrust-pc-sdk')) {
+    if (document.getElementById('onetrust-banner-sdk') && document.getElementById("onetrust-pc-btn-handler")) {
         // Get the buttons and container
         var acceptBtn = document.getElementById("onetrust-accept-btn-handler");
-        var declineBtn = document.getElementById("onetrust-reject-all-handler");
+        // var declineBtn = document.getElementById("onetrust-reject-all-handler");
         var cookieSettingsBtn = document.getElementById("onetrust-pc-btn-handler");
         var btnContainer = document.getElementById("onetrust-button-group");
         // Set the order you want below...
         btnContainer.append(acceptBtn, cookieSettingsBtn)
-        document
-        .getElementById('onetrust-policy-text')
-        .insertAdjacentHTML('afterbegin', langToggle);
+    //     document
+    //     .getElementById('onetrust-policy-text')
+    //     .insertAdjacentHTML('afterbegin', langToggle);
  
-    document
-        .getElementById('ot-pc-desc')
-        .insertAdjacentHTML('afterbegin', langToggle);
+    // document
+    //     .getElementById('ot-pc-desc')
+    //     .insertAdjacentHTML('afterbegin', langToggle);
         
  //remove accept all cookie button 
         // const element = document.getElementById("accept-recommended-btn-handler");
@@ -48,23 +73,23 @@ function OptanonWrapper() {
 
 
 
-    if (document.getElementById('onetrust-pc-sdk')) {
+    // if (document.getElementById('onetrust-pc-sdk')) {
 
-        var btnContainer = document.getElementsByClassName("ot-btn-container")[0]
-        var acceptButton = document.getElementById("accept-recommended-btn-handler");
-        var confirmButton = document.getElementsByClassName("save-preference-btn-handler")[0]
-        btnContainer.append(acceptButton,confirmButton)
+    //     var btnContainer = document.getElementsByClassName("ot-btn-container")[0]
+    //     var acceptButton = document.getElementById("accept-recommended-btn-handler");
+    //     var confirmButton = document.getElementsByClassName("save-preference-btn-handler")[0]
+    //     btnContainer.append(acceptButton,confirmButton)
 
-        if ((document.getElementsByClassName("ot-switch-nob")[0].ariaChecked) && (document.getElementsByClassName("ot-switch-nob")[1].ariaChecked)&& (document.getElementsByClassName("ot-switch-nob")[2].ariaChecked)){
-            document.getElementById("accept-recommended-btn-handler").style.display = "inline-block";
-        }
 
-    }
+    // }
     // if (document.getElementById('onetrust-pc-sdk')) {
     //     // Get the buttons and container
     //     document.getElementById("accept-recommended-btn-handler").style.display = "none";
 
     // }
+    if (document.getElementById('onetrust-pc-sdk')) {
+        document.getElementById('accept-recommended-btn-handler') && document.getElementById('accept-recommended-btn-handler').remove();
+    }
 
             if (typeof OptanonWrapperCount == "undefined") {
                 otGetInitialGrps();
@@ -76,25 +101,36 @@ function OptanonWrapper() {
             otDeleteCookie(otIniGrps);
 
             function otDeleteCookie(iniOptGrpId) {
+
                 // var otDomainGrps = JSON.parse(JSON.stringify(Optanon.GetDomainData().Groups));
+                // intgrpid = previous, onetrustactivegroups = current
                 var otDeletedGrpIds = otGetInactiveId(iniOptGrpId, OnetrustActiveGroups);
-                if (otDeletedGrpIds.length != 0) {
+
+                if (iniOptGrpId.length != 0 && OnetrustActiveGroups.length != 0 && iniOptGrpId.length < OnetrustActiveGroups.length && ifNewCategoryConsented(iniOptGrpId, OnetrustActiveGroups)){
+                    console.log("more groups allowed, refresh");
+                    window.location.reload();
+                }
+
+                else if (otDeletedGrpIds.length != 0) {
                         if (otDeletedGrpIds.includes("C0004") && document.cookie.match('(^|;)\\s*' + "Email" + '\\s*=\\s*([^;]+)')) {
                             document.cookie = "Email=Anonymous";
                             localStorage.removeItem("Email");
+                            console.log("cookie removal targeting");
                                window.location.reload();
                         }
 
-                        if (otDeletedGrpIds.includes("C0002") && document.cookie.match('(^|;)\\s*' + "pageviewCount" + '\\s*=\\s*([^;]+)')) {
+                       if (otDeletedGrpIds.includes("C0002") && document.cookie.match('(^|;)\\s*' + "pageviewCount" + '\\s*=\\s*([^;]+)')) {
                                eraseCookie("pageviewCount");
+                               console.log("cookie removal performance");
+
                                window.location.reload();
 
                                
                         }
                         
                         if (otDeletedGrpIds.includes("C0003") ) {
+                            console.log("cookie removal functional");
                                window.location.reload();
-
                         }
                         
 
@@ -116,6 +152,14 @@ function OptanonWrapper() {
                     }
                 }
                 return result;
+            }
+
+            function ifNewCategoryConsented (customIniId, otActiveGrp){
+                customIniId = customIniId.split(",");
+                customIniId = customIniId.filter(Boolean);
+                otActiveGrp = otActiveGrp.split(",");
+                otActiveGrp = otActiveGrp.filter(Boolean);
+                return customIniId.every(v => otActiveGrp.includes(v));
             }
 
             function eraseCookie(name) {
@@ -196,7 +240,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Functional Cookie - WhatsApp Icon showing on the right corner of the page, enables chat-bot functionality</p>
           </div>
 
-          <!-- OptanonCookieSettingsButtonStart --> <button id="ot-sdk-btn" class="ot-sdk-show-settings">CookieSettings</button> <!-- OptanonCookieSettingsButtonEnd -->
+          <!-- OptanonCookieSettingsButtonStart --> <button id="otbutton" onclick=infoDisplay()>CookieSettings</button> <!-- OptanonCookieSettingsButtonEnd -->
 
           <a onclick="changeLang('fr')" href="#" title="French" data-lang="French">
             <div class="flag pt">Francais</div>

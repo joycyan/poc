@@ -11,6 +11,11 @@ document.getElementById("user").onclick = function pageLoadUser() {
   location.href = "../html/user.html";
 };
 
+document.getElementById("otbutton").onclick = function infoDisplay() {
+  window.OneTrust.ToggleInfoDisplay()
+
+};
+
 document.getElementById('price').innerHTML =  document.cookie.match('(^|;)\\s*' + "Unit" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_storeded';
 
 const str = document.cookie.match('(^|;)\\s*' + "Email" + '\\s*=\\s*([^;]+)')?.pop() || 'no_value_stored';
