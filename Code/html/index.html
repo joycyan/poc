@@ -3,11 +3,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
-<html lang="fr">
+<html lang="en">
     <head>
 
+<!-- uncomment the below script to manually define the onetrust geolocation  -->
         <script type="text/javascript">
-            // uncomment for customGeolocation        
             var OneTrust = {        
                 geolocationResponse: {        
                     stateCode: 'QC',        
@@ -17,79 +17,11 @@
             };    
           </script>
 
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="2a68558e-fc72-461f-b86a-27135817dc5c-test" ></script>
+<!-- OneTrust Cookies Consent Notice start -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="18e3ca35-dd92-4883-93ac-cef8909963cd-test" ></script>
 <script type="text/javascript">
+//  cookie removal script example below - demo purpose only, please refer to the readme.md for the cookie removal script used in live client environment  
 function OptanonWrapper() {
-
-    console.log("called");
-
-    // if there is #cookiesetting in the url:
-    //remove it and go to previous page 
-
-    function test(test_text){
-        OneTrust.changeLanguage('en');
-        console.log(test_text);
-
-
-    }
-
-//     document.getElementById("onetrust-policy-text")
-//                 .insertAdjacentHTML("afterbegin",
-// `<div><a href="javascript:OneTrust.changeLanguage('en')"; class="en-selector">EN</a><span> | </span><a href="javascript:OneTrust.changeLanguage('fr')"; class="fr-selector">FR</a></div>`)   
-// console.log("i have been called");
-
-// document.getElementById("ot-pc-desc")
-//                 .insertAdjacentHTML("afterbegin",
-//                 `<div><a href="javascript:OneTrust.changeLanguage('en')"; class="en-selector">EN</a><span> | </span><a href="javascript:OneTrust.changeLanguage('fr')"; class="fr-selector">FR</a></div>`)   
-
-
-    var langToggle = `
-    <div><a href="#" onclick="OneTrust.changeLanguage('en'); setTimeout(function() { const element = document.getElementById('accept-recommended-btn-handler');element.remove();}, 2500);"class="en-selector">EN</a><span> | </span><a href="#" onclick="OneTrust.changeLanguage('fr');const element = document.getElementById('accept-recommended-btn-handler'); setTimeout(function() { const element = document.getElementById('accept-recommended-btn-handler');element.remove();}, 2500);" class="fr=selector">FR</a></div>
-    `;
- 
-
-
-    if (document.getElementById('onetrust-banner-sdk') && document.getElementById("onetrust-pc-btn-handler")) {
-        // Get the buttons and container
-        var acceptBtn = document.getElementById("onetrust-accept-btn-handler");
-        // var declineBtn = document.getElementById("onetrust-reject-all-handler");
-        var cookieSettingsBtn = document.getElementById("onetrust-pc-btn-handler");
-        var btnContainer = document.getElementById("onetrust-button-group");
-        // Set the order you want below...
-        btnContainer.append(acceptBtn, cookieSettingsBtn)
-    //     document
-    //     .getElementById('onetrust-policy-text')
-    //     .insertAdjacentHTML('afterbegin', langToggle);
- 
-    // document
-    //     .getElementById('ot-pc-desc')
-    //     .insertAdjacentHTML('afterbegin', langToggle);
-        
- //remove accept all cookie button 
-        // const element = document.getElementById("accept-recommended-btn-handler");
-        // element.remove();
-    }
-
-
-
-    // if (document.getElementById('onetrust-pc-sdk')) {
-
-    //     var btnContainer = document.getElementsByClassName("ot-btn-container")[0]
-    //     var acceptButton = document.getElementById("accept-recommended-btn-handler");
-    //     var confirmButton = document.getElementsByClassName("save-preference-btn-handler")[0]
-    //     btnContainer.append(acceptButton,confirmButton)
-
-
-    // }
-    // if (document.getElementById('onetrust-pc-sdk')) {
-    //     // Get the buttons and container
-    //     document.getElementById("accept-recommended-btn-handler").style.display = "none";
-
-    // }
-    if (document.getElementById('onetrust-pc-sdk')) {
-        document.getElementById('accept-recommended-btn-handler') && document.getElementById('accept-recommended-btn-handler').remove();
-    }
 
             if (typeof OptanonWrapperCount == "undefined") {
                 otGetInitialGrps();
@@ -102,8 +34,7 @@ function OptanonWrapper() {
 
             function otDeleteCookie(iniOptGrpId) {
 
-                // var otDomainGrps = JSON.parse(JSON.stringify(Optanon.GetDomainData().Groups));
-                // intgrpid = previous, onetrustactivegroups = current
+                var otDomainGrps = JSON.parse(JSON.stringify(Optanon.GetDomainData().Groups));
                 var otDeletedGrpIds = otGetInactiveId(iniOptGrpId, OnetrustActiveGroups);
 
                 if (iniOptGrpId.length != 0 && OnetrustActiveGroups.length != 0 && iniOptGrpId.length < OnetrustActiveGroups.length && ifNewCategoryConsented(iniOptGrpId, OnetrustActiveGroups)){
@@ -111,7 +42,7 @@ function OptanonWrapper() {
                     window.location.reload();
                 }
 
-                else if (otDeletedGrpIds.length != 0) {
+                else if (otDeletedGrpIds.length != 0 && otDomainGrps.length != 0) {
                         if (otDeletedGrpIds.includes("C0004") && document.cookie.match('(^|;)\\s*' + "Email" + '\\s*=\\s*([^;]+)')) {
                             document.cookie = "Email=Anonymous";
                             localStorage.removeItem("Email");
@@ -122,9 +53,7 @@ function OptanonWrapper() {
                        if (otDeletedGrpIds.includes("C0002") && document.cookie.match('(^|;)\\s*' + "pageviewCount" + '\\s*=\\s*([^;]+)')) {
                                eraseCookie("pageviewCount");
                                console.log("cookie removal performance");
-
                                window.location.reload();
-
                                
                         }
                         
@@ -132,10 +61,8 @@ function OptanonWrapper() {
                             console.log("cookie removal functional");
                                window.location.reload();
                         }
-                        
 
                     }
-                    // window.location.reload();
 
                 }
                 otGetInitialGrps();
@@ -163,16 +90,16 @@ function OptanonWrapper() {
             }
 
             function eraseCookie(name) {
-                console.log(name,"/n")
+                domainName = window.location.hostname;
+                document.cookie = name + "=; Max-Age=-99999999; Path=/;Domain=" + domainName;
                 document.cookie = name + '=; Max-Age=-99999999; Path=/;';
                 localStorage.removeItem(name);
             }
-
-        document.cookie = "OptanonConsent; expires=Wed, 05 Aug 2024 23:00:00 UTC; path=/"
-
-    
  }
 </script>
+
+<!-- OneTrust Cookies Consent Notice end -->
+
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -182,6 +109,8 @@ function OptanonWrapper() {
     })(window,document,'script','dataLayer','GTM-K3JR484C');</script>
     <!-- End Google Tag Manager -->
 
+
+    <!-- below are the examples of javascript type rewriting for cookie blocking -->
 <script type="text/plain" class="optanon-category-C0003" src="http://127.0.0.1:5500/Code/Scripts/function.js"></script>
 <script type="text/plain" class="optanon-category-C0002" src="http://127.0.0.1:5500/Code/Scripts/performance.js"></script>
 
@@ -241,13 +170,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <!-- OptanonCookieSettingsButtonStart --> <button id="otbutton" onclick=infoDisplay()>CookieSettings</button> <!-- OptanonCookieSettingsButtonEnd -->
-
-          <a onclick="changeLang('fr')" href="#" title="French" data-lang="French">
-            <div class="flag pt">Francais</div>
-         </a>
-
-
-
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     </body>
